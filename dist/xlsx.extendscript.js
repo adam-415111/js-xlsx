@@ -29383,7 +29383,8 @@ f = "docProps/app.xml";
 			}
 			zip.file("xl/drawings/drawing" + rId + "." + wbext, write_drawing(images));
 			add_rels(rels, rId, "../drawings/drawing" + rId + "." + wbext, RELS.DRAW);
-			zip.file("xl/drawings/_rels/drawing" + rId + "." + wbext + ".rels", write_rels(draw_rels));
+			if(Object.entries(draw_rels).length > 0)
+				zip.file("xl/drawings/_rels/drawing" + rId + "." + wbext + ".rels", write_rels(draw_rels));
 			zip.file("xl/worksheets/_rels/sheet" + rId + "." + wbext + '.rels', write_rels(rels));
 			f = "xl/worksheets/sheet" + rId + "." + wbext;
 			zip.file(f, write_ws(rId-1, f, opts, wb, wsrels));
